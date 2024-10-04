@@ -87,7 +87,7 @@ void Gravityfield2Deflections::run(Config &config, Parallel::CommunicatorPtr com
         field.at(0).at(i) = g.at(i).x();
         field.at(1).at(i) = g.at(i).y();
       }
-
+//JULIA
       logStatus<<"save values <"<<fileNameGrid<<">"<<Log::endl;
       GriddedData griddedData(Ellipsoid(a,f), points, areas, field);
       writeFileGriddedData(fileNameGrid, griddedData);
