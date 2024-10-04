@@ -100,6 +100,7 @@ Double Planets::normalGravity(const Vector3d &p)
   const Double cos2 = std::pow(std::cos(B),2);
   const Double sin2 = std::pow(std::sin(B),2);
   const Double gamma0 = (a*ga*cos2+b*gb*sin2)/std::sqrt(a*a*cos2+b*b*sin2);
+  std::cout<<"normalgravity:  "<< gamma0 -2*ga/a*(1+1/f+m+(-3/f+5*m/2)*sin2)*h+3*ga/a/a*h*h <<std::endl;
   return gamma0 -2*ga/a*(1+1/f+m+(-3/f+5*m/2)*sin2)*h+3*ga/a/a*h*h;
 }
 

@@ -76,9 +76,15 @@ Vector3d Transform3d::transform(const Vector3d &v) const
 Vector3d Transform3d::inverseTransform(const Vector3d &v) const
 {
   Vector3d y;
+  std::cout<<"inverseTransform:  v.x()"<< v.x() <<std::endl;
+  std::cout<<"inverseTransform:  v.y()"<< v.y() <<std::endl;
+  std::cout<<"inverseTransform:  v.z()"<< v.z() <<std::endl;
   for(UInt i=0; i<3; i++)
     for(UInt k=0; k<3; k++)
       y.field[i] += field[k][i] * v.field[k];
+  std::cout<<"inverseTransform:  y.field[0]"<< y.field[0] <<std::endl;
+  std::cout<<"inverseTransform:  y.field[1]"<< y.field[1] <<std::endl;
+  std::cout<<"inverseTransform:  y.field[2]"<< y.field[2] <<std::endl;
   return y;
 }
 
@@ -195,6 +201,15 @@ Transform3d localNorthEastUp(const Vector3d &point)
   const Vector3d z = normalize(point);                            // up
   const Vector3d y = normalize(crossProduct(Vector3d(0,0,1), z)); // east
   const Vector3d x = normalize(crossProduct(z, y));               // north
+  std::cout<<"localNorthEastUp up.x:   "<<z.x()<<std::endl;
+  std::cout<<"localNorthEastUp up.y:   "<<z.y()<<std::endl;
+  std::cout<<"localNorthEastUp up.z:   "<<z.z()<<std::endl;
+  std::cout<<"localNorthEastUp east.x: "<<y.x()<<std::endl;
+  std::cout<<"localNorthEastUp east.y: "<<y.y()<<std::endl;
+  std::cout<<"localNorthEastUp east.z: "<<y.z()<<std::endl;
+  std::cout<<"localNorthEastUp north.x:"<<x.x()<<std::endl;
+  std::cout<<"localNorthEastUp north.y:"<<x.y()<<std::endl;
+  std::cout<<"localNorthEastUp north.z:"<<z.z()<<std::endl;
   Transform3d T;
   T.field[0][0] = x.x(); T.field[0][1] = y.x(); T.field[0][2] = z.x();
   T.field[1][0] = x.y(); T.field[1][1] = y.y(); T.field[1][2] = z.y();
@@ -209,6 +224,12 @@ Transform3d localNorthEastUp(const Vector3d &point, const Ellipsoid &ellipsoid)
   Angle  L, B;
   Double h;
   ellipsoid(point, L, B, h);
+  std::cout<<"localNorthEastUp L:   "<<L<<std::endl;
+  std::cout<<"localNorthEastUp B:   "<<B<<std::endl;
+  std::cout<<"localNorthEastUp h:   "<<h<<std::endl;
+  std::cout<<"localNorthEastUp point.x:   "<<point.x()<<std::endl;
+  std::cout<<"localNorthEastUp point.y:   "<<point.x()<<std::endl;
+  std::cout<<"localNorthEastUp point.z:   "<<point.x()<<std::endl;
   return localNorthEastUp(polar(L, B, 1.));
 }
 
